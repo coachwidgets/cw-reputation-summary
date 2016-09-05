@@ -1,0 +1,37 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>cw-reputation-summary test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../cw-reputation-summary.html">
+  </head>
+  <body>
+
+    <test-fixture id="basic">
+      <template>
+        <cw-reputation-summary reputation='{"roundedRating": "3", "programReviewsTotal": "5"}'></cw-reputation-summary>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('cw-reputation-summary', function() {
+
+        test('instantiating the element works', function() {
+          var element = fixture('basic');
+          assert.equal(element.is, 'cw-reputation-summary');
+        });
+
+        test('instantiating the element works', function() {
+          var element = fixture('basic');
+          assert.equal(element.is, 'cw-reputation-summary');
+        });
+
+      });
+    </script>
+  </body>
+</html>

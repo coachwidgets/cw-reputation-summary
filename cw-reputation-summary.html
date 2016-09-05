@@ -1,0 +1,25 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer-ts/polymer-ts.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+
+<dom-module id="cw-reputation-summary">
+    <template>
+       <style is="custom-style">
+    .gold{
+        color: gold;
+		}
+    .grey {
+      color: lightgrey;
+    }
+       </style>
+       <paper-icon-button icon='star' id='star1' class$="{{star1}}"></paper-icon-button>
+       <paper-icon-button icon='star' id='star2' class$="{{star2}}"></paper-icon-button>
+       <paper-icon-button icon='star' id='star3' class$="{{star3}}"></paper-icon-button>
+       <paper-icon-button icon='star' id='star4' class$="{{star4}}"></paper-icon-button>
+       <paper-icon-button icon='star' id='star5' class$="{{star5}}"></paper-icon-button>
+       <p>
+         Based on {{reputation.programReviewsTotal}} client reviews
+       </p>
+     </template>
+</dom-module>
+<script src="./cw-reputation-summary.js"></script>
