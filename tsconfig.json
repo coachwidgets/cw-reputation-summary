@@ -166,6 +166,6 @@
         "./node_modules/typings/dist/bin-view.d.ts",
         "./node_modules/typings/dist/bin.d.ts",
         "./node_modules/typings/dist/support/cli.d.ts",
-        "../typings/app/index.ts"
+        "../typings/app/reputation.ts"
     ]
 }

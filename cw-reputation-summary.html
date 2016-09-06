@@ -1,7 +1,16 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../polymer-ts/polymer-ts.html">
+<link rel="import" href="../app-localize-behavior/app-localize-behavior.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 
+<!--
+  `cw-reputation-summary`
+
+Displays a summary of a reputation object.
+
+    <body>
+      <cw-reputation-summary reputation = "[[reputation]]"></cw-reputation-summary>
+    @demo demo/index.html
+-->
 <dom-module id="cw-reputation-summary">
     <template>
        <style is="custom-style">
@@ -12,14 +21,44 @@
       color: lightgrey;
     }
        </style>
-       <paper-icon-button icon='star' id='star1' class$="{{star1}}"></paper-icon-button>
-       <paper-icon-button icon='star' id='star2' class$="{{star2}}"></paper-icon-button>
-       <paper-icon-button icon='star' id='star3' class$="{{star3}}"></paper-icon-button>
-       <paper-icon-button icon='star' id='star4' class$="{{star4}}"></paper-icon-button>
-       <paper-icon-button icon='star' id='star5' class$="{{star5}}"></paper-icon-button>
-       <p>
-         Based on {{reputation.programReviewsTotal}} client reviews
-       </p>
+       <paper-icon-button icon='star' id='star1' class$="[[_star1]]"></paper-icon-button>
+       <paper-icon-button icon='star' id='star2' class$="[[_star2]]"></paper-icon-button>
+       <paper-icon-button icon='star' id='star3' class$="[[_star3]]"></paper-icon-button>
+       <paper-icon-button icon='star' id='star4' class$="[[_star4]]"></paper-icon-button>
+       <paper-icon-button icon='star' id='star5' class$="[[_star5]]"></paper-icon-button>
+       <p id='reviews'>{{localize('reviewsTotal','num',reputation.programReviewsTotal)}}</p>
      </template>
+     <script>
+      Polymer({
+        is: "cw-reputation-summary",
+
+        behaviors: [
+          Polymer.AppLocalizeBehavior
+        ],
+
+        properties: {
+          language: {
+            type: String,
+            value: 'en'
+          },
+          reputation: Object,
+          _star1: {type: String},
+          _star2: {type: String},
+          _star3: {type: String},
+          _star4: {type: String},
+          _star5: {type: String},
+        },
+
+        attached: function() {
+          this.loadResources(this.resolveUrl('locales.json'));
+        },
+        ready: function() {
+          this._star1 = (this.reputation.roundedRating >= 1) ? 'gold' : 'grey'
+          this._star2 = (this.reputation.roundedRating >= 2) ? 'gold' : 'grey'
+          this._star3 = (this.reputation.roundedRating >= 3) ? 'gold' : 'grey'
+          this._star4 = (this.reputation.roundedRating >= 4) ? 'gold' : 'grey'
+          this._star5 = (this.reputation.roundedRating === 5) ? 'gold' : 'grey'
+        }
+      });
+   </script>
 </dom-module>
-<script src="./cw-reputation-summary.js"></script>

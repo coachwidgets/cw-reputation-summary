@@ -1,10 +1,11 @@
 {
   "name": "cw-reputation-summary",
-  "description": "A summary of reviews and ratings based on a coach&#39;s reputation",
+  "description": "A summary of reviews and ratings based on a coach's reputation",
   "main": "cw-reputation-summary.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0",
-    "polymer-ts": "^0.1.28"
+    "polymer-ts": "^0.1.28",
+    "app-localize-behavior": "PolymerElements/app-localize-behavior#^0.9.2"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",

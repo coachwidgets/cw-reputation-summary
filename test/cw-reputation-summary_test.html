@@ -12,24 +12,70 @@
   </head>
   <body>
 
-    <test-fixture id="basic">
+    <test-fixture id="oneReview">
       <template>
-        <cw-reputation-summary reputation='{"roundedRating": "3", "programReviewsTotal": "5"}'></cw-reputation-summary>
+        <cw-reputation-summary reputation='{"roundedRating": "3", "programReviewsTotal": "1"}'></cw-reputation-summary>
+      </template>
+    </test-fixture>
+    <test-fixture id="twoReviews">
+      <template>
+        <cw-reputation-summary reputation='{"roundedRating": "3", "programReviewsTotal": "2"}'></cw-reputation-summary>
+      </template>
+    </test-fixture>
+    <test-fixture id="noReviews">
+      <template>
+        <cw-reputation-summary reputation='{"roundedRating": "3", "programReviewsTotal": "0"}'></cw-reputation-summary>
       </template>
     </test-fixture>
 
     <script>
       suite('cw-reputation-summary', function() {
-
-        test('instantiating the element works', function() {
-          var element = fixture('basic');
+        test('instantiating an element with three reviews works', function() {
+          var element = fixture('oneReview');
           assert.equal(element.is, 'cw-reputation-summary');
         });
-
-        test('instantiating the element works', function() {
-          var element = fixture('basic');
-          assert.equal(element.is, 'cw-reputation-summary');
+        test('star1 has class gold', function() {
+          var element = fixture('oneReview');
+          assert.include(element.$.star1.classList.value, 'gold');
         });
+        test('star2 has class gold', function() {
+          var element = fixture('oneReview');
+          assert.include(element.$.star2.classList.value, 'gold');
+        });
+        test('star3 has class gold', function() {
+          var element = fixture('oneReview');
+          assert.include(element.$.star3.classList.value, 'gold');
+        });
+        test('star4 has class grey', function() {
+          var element = fixture('oneReview');
+          assert.include(element.$.star4.classList.value, 'grey');
+        });
+        test('star5 has class grey', function() {
+          var element = fixture('oneReview');
+          assert.include(element.$.star5.classList.value, 'grey');
+        });
+        test('The number of reviews message is correct for one review', function() {
+          var element = fixture('oneReview');
+          setTimeout(function(){
+            var reviewsTotalEl = element.$.reviews.textContent
+            assert.equal(reviewsTotalEl, 'Based on one client review');
+          })
+        });
+        test('The number of reviews message is correct for two reviews', function() {
+          var element = fixture('twoReviews');
+          setTimeout(function(){
+            var reviewsTotalEl = element.$.reviews.textContent
+            assert.equal(reviewsTotalEl, 'Based on 2 client reviews');
+          })
+        });
+        test('The number of reviews message is correct for no reviews', function() {
+          var element = fixture('noReviews');
+          setTimeout(function(){
+            var reviewsTotalEl = element.$.reviews.textContent
+            assert.equal(reviewsTotalEl, 'Based on no client reviews');
+          })
+        });
+
 
       });
     </script>
